@@ -1,0 +1,16 @@
+<html>
+  <body>
+    <script type="text/javascript">
+      var age, retireAge, yearsToRetire, currentYear, retireAt;
+
+      age = parseInt(prompt("What is your age?"), 10);
+      retireAge = parseInt(prompt("At what age your would like to retire?"), 10);
+
+      yearsToRetire = retireAge - age;
+      currentYear = new Date().getFullYear();
+      retireAt = currentYear + yearsToRetire;
+
+      console.log("You have " + yearsToRetire + " years left until you can retire.\n" + "It's " + currentYear + ", so you can retire in " + retireAt + ".");
+    </script>
+  </body>
+</html>
