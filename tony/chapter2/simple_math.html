@@ -1,0 +1,30 @@
+<html>
+  <body>
+    <script type="text/javascript">
+
+      var firstNumber = prompt("What is the first number?");
+      var secondNumber = prompt("What is the second number?");
+
+      var num1 = parseInt(firstNumber, 10);
+      var num2 = parseInt(secondNumber, 10);
+
+      var sum = num1 + num2;
+      var multiply = num1 * num2;
+
+      var diff, quotient;
+
+      if (num1 >= num2) {
+        diff = num1 - num2;
+      } else {
+        diff = num2 - num1;
+      };
+      if (num1 >= num2) {
+        quotient = num1/num2;
+      } else if (num2 >num1){
+        quotient = num2/num1;
+      };
+
+      console.log(sum, diff, multiply, quotient);
+    </script>
+  </body>
+</html>
