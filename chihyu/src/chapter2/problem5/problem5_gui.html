@@ -61,19 +61,24 @@
 						</td>
 					</tr>
 					<tr>
-						<td></td>
+						<td>
+							<button class="btn btn-secondary btn-block">Back</button>
+						</td>
 						<td>
 							<button id="0" class="btn btn-secondary btn-block">0</button>
 						</td>
-						<td></td>
+						<td>
+							<button class="btn btn-secondary btn-block">Refresh</button>							
+						</td>
 						<td>
 							<button id="/" class="btn btn-secondary btn-block">/</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<div id="firstNumber"></div>
-			<div id="secondNumber"></div>
+			<div id="firstNumber">firstNumber: </div>
+			<div id="secondNumber">secondNumber: </div>
+			<br>
 			Summation result: <p id="summation"></p>
 			Subtraction: <p id="subtraction"></p>
 			Multiplification result result: <p id="multiplification"></p>
@@ -90,15 +95,63 @@
 
 	<script>
 		var summation, subtraction, multiplification, division;
-		var firstNumber;
-		var secondNumber;
-		var keys = document.querySelectorAll('#calculator button');
+		var firstNumber = '';
+		var secondNumber = '';
+		var operator = '';
+		var operatorPressed = false;
 
-		for (var i = 0; i < keys.length; i++) {
-			keys[i].on('click', function() {
-				
-			});
-		}
+		// keys.text()[..]
+
+		$('.btn').on('click', function() {
+			if ($(this).text() !== 'Back' &&
+				$(this).text() !== 'Refresh') {
+				if ($(this).text() !== '+' &&
+					$(this).text() !== '-' &&
+					$(this).text() !== '*' &&
+					$(this).text() !== '/' &&
+					!operatorPressed) {
+					firstNumber += $(this).text();
+				}
+				else if ($(this).text() === '+' ||
+					$(this).text() === '-' ||
+					$(this).text() === '*' ||
+					$(this).text() === '/') {
+					operator = $(this).text();
+					operatorPressed = true;
+				}
+				else{
+					secondNumber += $(this).text();
+				}
+			}
+			else if($(this).text() === 'Back') {
+				if (operatorPressed === false) 
+					firstNumber = firstNumber.slice(0, firstNumber.length-1);
+				else
+					secondNumber = secondNumber.slice(0, secondNumber.length-1);
+			}
+			else {
+				firstNumber = '';
+				secondNumber = '';
+				operator = '';
+				operatorPressed = false;
+				$('#summation').html('');
+				$('#subtraction').html('');
+				$('#multiplification').html('');
+				$('#division').html('');
+			}
+			
+			$('#firstNumber').html("firstNumber: " + firstNumber);
+			$('#secondNumber').html("secondNumber: " + secondNumber);
+			('');
+			if (operator === '+')
+				$('#summation').html(Number(firstNumber) + Number(secondNumber));
+			else if (operator === '-')
+				$('#subtraction').html(Number(firstNumber) - Number(secondNumber));
+			else if (operator === '*')
+				$('#multiplification').html(Number(firstNumber) * Number(secondNumber));
+			else
+				$('#division').html(Number(firstNumber) / Number(secondNumber));
+		});
 
 	</script>
 </body>
